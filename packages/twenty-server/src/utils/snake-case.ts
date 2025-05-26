@@ -16,8 +16,8 @@ export const snakeCaseDeep = <T>(value: T): SnakeCasedPropertiesDeep<T> => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const result: Record<string, any> = {};
 
-    for (const key in value) {
-      result[snakeCase(key)] = snakeCaseDeep(value[key]);
+    for (const [key, val] of Object.entries(value)) {
+      result[snakeCase(key)] = snakeCaseDeep(val as any);
     }
 
     return result as SnakeCasedPropertiesDeep<T>;

@@ -16,8 +16,8 @@ export const camelCaseDeep = <T>(value: T): CamelCasedPropertiesDeep<T> => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const result: Record<string, any> = {};
 
-    for (const key in value) {
-      result[camelCase(key)] = camelCaseDeep(value[key]);
+    for (const [key, val] of Object.entries(value)) {
+      result[camelCase(key)] = camelCaseDeep(val as any);
     }
 
     return result as CamelCasedPropertiesDeep<T>;
